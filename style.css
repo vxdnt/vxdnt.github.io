@@ -8,8 +8,8 @@ body {
 }
 
 .navbar {
-  background-color: #000;
-  color: #f5f5f5;
+  background-color:#000;
+  color: #000;
 }
 
 /* Navbar */
@@ -90,6 +90,8 @@ header h1 {
 .card img {
   height: 200px;
   object-fit: cover;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 /* Footer */
@@ -111,4 +113,3 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
-
