@@ -21,6 +21,39 @@
       background-color: #f4f4f4;
     }
 
+    /* CV Popup Styling */
+    .cv-popup {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cv-popup-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+    }
+
+    .cv-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+
     /* Header */
     header {
       background-color: rgba(255, 255, 255, 0.3);
@@ -121,7 +154,7 @@
       background: white;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
       height: 100%;
     }
@@ -275,10 +308,39 @@
             and I have a strong passion for research, in-depth analysis, and strategic planning.
           </p>
           <a href="#projects" class="btn-custom">View My Work</a>
+          <a href="#" class="btn-custom" id="viewCVBtn">View CV</a>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- CV Request Popup -->
+  <div id="cvPopup" class="cv-popup">
+    <div class="cv-popup-content">
+      <span class="cv-close" id="cvClose">&times;</span>
+      <h2 style="text-align: center;">May I know you?</h2>
+      <form action="https://formspree.io/f/xeokwlwl" method="POST">
+        <div class="mb-6">
+          <label for="Name" class="form-label" required>Full Name:</label>
+          <input type="text" class="form-control" name="Name" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label" required>Email Address:</label>
+          <input type="email" class="form-control" name="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="Contact" class="form-label" required>Contact Number:</label>
+          <input type="number" class="form-control" name="Contact" required>
+        </div>
+        <div class="mb-3">
+          <label for="reason" class="form-label" required>Purpose?</label>
+          <textarea class="form-control" name="reason" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark">Request CV</button>
+      </form>
+    </div>
+  </div>
+
 
   <!-- Projects Section -->
   <section id="projects" class="projects">
@@ -415,6 +477,23 @@
         });
       });
     });
+
+    // Show/Hide CV popup
+    document.getElementById("viewCVBtn").addEventListener("click", function (e) {
+      e.preventDefault();
+      document.getElementById("cvPopup").style.display = "flex";
+    });
+
+    document.getElementById("cvClose").addEventListener("click", function () {
+      document.getElementById("cvPopup").style.display = "none";
+    });
+
+    window.addEventListener("click", function (e) {
+      if (e.target === document.getElementById("cvPopup")) {
+        document.getElementById("cvPopup").style.display = "none";
+      }
+    });
+
   </script>
 </body>
 
