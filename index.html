@@ -1,201 +1,421 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Portfolio</title>
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vedant Konde - Portfolio</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-<link rel="stylesheet" href="style.css">
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+
+    /* Header */
+    header {
+      background-color: rgba(255, 255, 255, 0.3);
+      /* Light transparent background */
+      backdrop-filter: blur(10px);
+      /* Blur effect */
+      -webkit-backdrop-filter: blur(10px);
+      padding: 1rem 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      padding: 0;
+    }
+
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #000 !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: #4d4d4d !important;
+      font-weight: 500;
+      margin-left: 1rem;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #000000 !important;
+    }
+
+    .navbar-toggler {
+      border: none;
+      padding: 0.25rem 0.5rem;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: #ffffff;
+      color: rgb(0, 0, 0);
+      text-align: center;
+      min-height: 100vh;
+      padding: 120px 0 60px;
+      margin-top: 70px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn-custom {
+      display: inline-block;
+      background: #000000;
+      color: white;
+      padding: 12px 30px;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background: #2c3e50;
+      color: white;
+    }
+
+    /* Projects Section */
+    .projects {
+      background: #fdfdfd;
+      padding: 60px 0;
+      border-top: 1px solid #000;
+    }
+
+    .projects h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: #2c3e50;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      height: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .card-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #2c3e50;
+    }
+
+    .card-content p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #ffffff;
+      color: #000000;
+      padding: 20px 0;
+      border-top: 1px solid #000;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    footer a {
+      color: #505050;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #000000;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 100px 0 40px;
+        margin-top: 60px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .projects h2 {
+        font-size: 2rem;
+      }
+
+      .projects {
+        padding: 40px 0;
+      }
+
+      .navbar-nav {
+        text-align: center;
+        margin-top: 1rem;
+      }
+
+      .navbar-nav .nav-link {
+        margin: 0.5rem 0;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero p {
+        font-size: 0.9rem;
+        padding: 0 1rem;
+      }
+
+      .projects h2 {
+        font-size: 1.8rem;
+      }
+
+      footer {
+        padding: 15px 0;
+      }
+
+      footer p {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
-    <div class="container">
-      <a class="navbar-brand" href="#home">Vedant Konde</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <div class="collapse navbar-collapse" id="navmenu">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item">
-  <a class="nav-link" href="https://www.linkedin.com/in/vxdnt" target="_blank">Linkdln
-  </a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="https://github.com/vxdnt" target="_blank">
-    Github
-  </a>
-</li>
-
-
-        </ul>
+  <!-- Header -->
+  <header>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="#">Vedant Konde</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.linkedin.com/in/vxdnt" target="_blank">LinkedIn</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/vxdnt" target="_blank">GitHub</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-
-  <!-- Hero / Home -->
-  <header id="home" class="bg-primary text-white text-center d-flex align-items-center" style="height:100vh;">
-    <div class="container">
-      <h1 class="display-4 fw-bold">Hello, I'm Vedant Konde</h1>
-      <a href="#projects" class="btn btn-outline-light btn-lg mt-3">View My Work</a>
-    </div>
+    </nav>
   </header>
 
-  <!-- About Section -->
-  <section id="about" class="bg-white text-center">
+  <!-- Hero Section -->
+  <section class="hero">
     <div class="container">
-      <h2 class="mb-4">About Me</h2>
-      <p class="lead mb-5"> I'm Python developer
-  I'm pursuing a degree in Computer Science and Engineering with a specialization in IoT, Cybersecurity, and 
-  Blockchain Technology. Additionally, I'm enrolled in a BS program in Data Science from <strong>IIT Madras</strong>, focusing on 
-  Artificial Intelligence and Machine Learning. Beyond academics, I'm an entrepreneur and the founder of 
-  <strong>Sortmyentries</strong>, a marketplace for ticketing services. I enjoy taking initiative and 
-  leadership roles, and I have a strong passion for research, in-depth analysis, and strategic planning.
-</p>
-
-      <div class="row justify-content-center">
-        <div class="col-md-4">
-          <img src="prof.jpg" alt="Your Photo" class="rounded-circle img-fluid mb-3" />
+      <div class="row">
+        <div class="col-12">
+          <h1>Hello, I'm Vedant Konde</h1>
+          <p>
+            I'm Python developer I'm pursuing a degree in Computer Science and Engineering with a specialization in IoT,
+            Cybersecurity, and Blockchain Technology. Additionally, I'm enrolled in a BS program in Data Science from
+            IIT
+            Madras, focusing on Artificial Intelligence and Machine Learning. Beyond academics, I'm an entrepreneur and
+            the
+            founder of Sortmyentries, a marketplace for ticketing services. I enjoy taking initiative and leadership
+            roles,
+            and I have a strong passion for research, in-depth analysis, and strategic planning.
+          </p>
+          <a href="#projects" class="btn-custom">View My Work</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="bg-light">
+  <section id="projects" class="projects">
     <div class="container">
-      <h2 class="text-center mb-5">My Projects</h2>
+      <h2>My Projects</h2>
       <div class="row g-4">
-        <!-- Project Card Example -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow-sm">
-            <img src="parking.jpg" class="card-img-top" alt="Project 1" />
-            <div class="card-body">
-              <h5 class="card-title">Parking Slot Detection</h5>
-              <p class="card-text">Parking Slot Detection using uktrasonic sensor to update the incoming vehicles with available slots</p>
-              <a href="#" class="btn btn-primary" target="_blank">View Details</a>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="project-card">
+            <img src="parking.jpg" alt="Parking Slot Detection">
+            <div class="card-content">
+              <h3>Parking Slot Detection</h3>
+              <p>Parking slot detection system using ultrasonic sensors to update incoming vehicles with available
+                slots.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow-sm">
-            <img src="drug.jpg" class="card-img-top" alt="Project 2" />
-            <div class="card-body">
-              <h5 class="card-title">Automatic Drug Dispenser</h5>
-              <p class="card-text">An IoT-enabled device designed to automate and schedule medication dispensing for patients.</p>
-              <a href="#" class="btn btn-primary" target="_blank">View Details</a>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="project-card">
+            <img src="drug.jpg" alt="Automatic Drug Dispenser">
+            <div class="card-content">
+              <h3>Automatic Drug Dispenser</h3>
+              <p>IoT-enabled device designed to automate and schedule medication dispensing for patients.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow-sm">
-            <img src="Honeypot.png" class="card-img-top" alt="Project 3" />
-            <div class="card-body">
-              <h5 class="card-title">Deceptive Honeypots</h5>
-              <p class="card-text">A cybersecurity project that deploys decoy systems to detect and analyze malicious activities.</p>
-              <a href="#" class="btn btn-primary" target="_blank">View Details</a>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="project-card">
+            <img src="Honeypot.png" alt="Deceptive Honeypots">
+            <div class="card-content">
+              <h3>Deceptive Honeypots</h3>
+              <p>Cybersecurity project that deploys decoy systems to detect and analyze malicious activities.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow-sm">
-            <img src="blockchat.png" class="card-img-top" alt="Project 3" />
-            <div class="card-body">
-              <h5 class="card-title">Blockchain Chat App</h5>
-              <p class="card-text">A decentralized messaging application leveraging blockchain technology for secure communications.</p>
-              <a href="#" class="btn btn-primary" target="_blank">View Details</a>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="project-card">
+            <img src="blockchat.png" alt="Blockchain Chat App">
+            <div class="card-content">
+              <h3>Blockchain Chat App</h3>
+              <p>Decentralized messaging application leveraging blockchain technology for secure communications.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow-sm">
-            <img src="devi.png" class="card-img-top" alt="Project 3" />
-            <div class="card-body">
-              <h5 class="card-title">Generative AI</h5>
-              <p class="card-text">A Generative AI model to simulate human-like responses and assist users interactively.</p>
-              <a href="#" class="btn btn-primary" target="_blank">View Details</a>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="project-card">
+            <img src="devi.png" alt="Generative AI">
+            <div class="card-content">
+              <h3>Generative AI</h3>
+              <p>Generative AI model to simulate human-like responses and assist users interactively.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow-sm">
-            <img src="vps.png" class="card-img-top" alt="Project 3" />
-            <div class="card-body">
-              <h5 class="card-title">Vehicle Parking Booking System</h5>
-              <p class="card-text">A web-based platform that allows users to reserve parking spots in advance, streamlining urban parking.</p>
-              <a href="#" class="btn btn-primary" target="_blank">View Details</a>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="project-card">
+            <img src="vps.png" alt="Vehicle Parking System">
+            <div class="card-content">
+              <h3>Vehicle Parking Booking System</h3>
+              <p>Web-based platform that allows users to reserve parking spots in advance.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow-sm">
-            <img src="bot.png" class="card-img-top" alt="Project 2" />
-            <div class="card-body">
-              <h5 class="card-title">Chat-Bot</h5>
-              <p class="card-text">An interactive chatbot developed to assist users by providing automated responses and information.</p>
-              <a href="#" class="btn btn-primary" target="_blank">View Details</a>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="project-card">
+            <img src="bot.png" alt="Chat Bot">
+            <div class="card-content">
+              <h3>Chat Bot</h3>
+              <p>Interactive chatbot developed to assist users by providing automated responses and information.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow-sm">
-            <img src="calender.jpg" class="card-img-top" alt="Project 2" />
-            <div class="card-body">
-              <h5 class="card-title">Event Calender</h5>
-              <p class="card-text">A Calender which displays upcoming events across different 42 categories</p>
-              <a href="#" class="btn btn-primary" target="_blank">View Details</a>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="project-card">
+            <img src="calender.jpg" alt="Event Calendar">
+            <div class="card-content">
+              <h3>Event Calendar</h3>
+              <p>Calendar which displays upcoming events across different 42 categories.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow-sm">
-            <img src="sme.png" class="card-img-top" alt="Project 2" />
-            <div class="card-body">
-              <h5 class="card-title">Sortmyentries</h5>
-              <p class="card-text">AI powered Event ticket marketplace for Organizers and attendees, simplifying event ticketing</p>
-              <a href="#" class="btn btn-primary" target="_blank">View Details</a>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="project-card">
+            <img src="sme.png" alt="Sortmyentries">
+            <div class="card-content">
+              <h3>Sortmyentries</h3>
+              <p>AI powered event ticket marketplace for organizers and attendees, simplifying event ticketing.</p>
             </div>
           </div>
         </div>
-        <!-- Add more projects as needed -->
+
       </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-  <div class="container">
-    <div class="d-flex justify-content-between flex-column flex-md-row text-center text-md-start">
-      <p>
-        Websites:
-        <a href="https://www.sortmyentries.in" target="_blank" class="text-decoration-none">sortmyentries.in</a> |
-        <a href="https://www.sortmyevents.in" target="_blank" class="text-decoration-none">sortmyevents.in</a>
-      </p>
-      <p>
-        Reach out:
-        <a href="mailto:vedantkonde09@gmail.com" class="text-decoration-none">vedantkonde09@gmail.com</a> |
-        <a href="mailto:sortmyentrieshq@gmail.com" class="text-decoration-none">sortmyentrieshq@gmail.com</a> |
-        <a href="tel:+917715039001" class="text-decoration-none">+91 77150 39001</a>
-      </p>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-12 text-center text-md-start mb-2 mb-md-0">
+          <p>
+            Websites:
+            <a href="https://www.sortmyentries.in" target="_blank">sortmyentries.in</a> |
+            <a href="https://www.sortmyevents.in" target="_blank">sortmyevents.in</a>
+          </p>
+        </div>
+        <div class="col-md-6 col-12 text-center text-md-end">
+          <p>
+            <a href="mailto:vedantkonde09@gmail.com">vedantkonde09@gmail.com</a> |
+            <a href="tel:+917715039001">+91 77150 39001</a>
+          </p>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-
-
-  <!-- Bootstrap JS Bundle -->
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Custom JS for form validation -->
-  <script src="script.js"></script>
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 </body>
+
 </html>
