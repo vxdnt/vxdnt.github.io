@@ -7,6 +7,8 @@
   <title>Vedant Konde - Portfolio</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
   <style>
     * {
       margin: 0;
@@ -15,10 +17,11 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
-      color: #333;
-      background-color: #f4f4f4;
+      color: #212529;
+      background-color: #ffffff;
+      overflow-x: hidden;
     }
 
     /* CV Popup Styling */
@@ -30,68 +33,78 @@
       top: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(4px);
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
       justify-content: center;
       align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     .cv-popup-content {
       background: #fff;
-      padding: 2rem;
-      border-radius: 10px;
+      padding: 2.5rem;
+      border-radius: 15px;
       width: 90%;
       max-width: 500px;
       position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      transform: scale(0.9);
+      animation: popIn 0.3s ease forwards;
+    }
+
+    @keyframes popIn {
+      to {
+        transform: scale(1);
+      }
     }
 
     .cv-close {
       position: absolute;
-      top: 10px;
-      right: 15px;
+      top: 15px;
+      right: 20px;
       font-size: 1.5rem;
       cursor: pointer;
+      color: #6c757d;
+      transition: color 0.3s ease;
     }
 
+    .cv-close:hover {
+      color: #000;
+    }
 
     /* Header */
     header {
-      background-color: rgba(255, 255, 255, 0.3);
-      /* Light transparent background */
-      backdrop-filter: blur(10px);
-      /* Blur effect */
-      -webkit-backdrop-filter: blur(10px);
-      padding: 1rem 0;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
       position: fixed;
       width: 100%;
       top: 0;
       z-index: 1000;
-    }
-
-    .navbar {
-      padding: 0;
-    }
-
-    .navbar-brand {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #000 !important;
+      transition: all 0.3s ease;
     }
 
     .navbar-nav .nav-link {
-      color: #4d4d4d !important;
-      font-weight: 500;
-      margin-left: 1rem;
+      color: #495057 !important;
+      margin-left: 1.5rem;
+      position: relative;
     }
 
     .navbar-nav .nav-link:hover {
-      color: #000000 !important;
+      color: #000 !important;
     }
 
     .navbar-toggler {
       border: none;
-      padding: 0.25rem 0.5rem;
     }
 
     .navbar-toggler:focus {
@@ -100,133 +113,293 @@
 
     /* Hero Section */
     .hero {
-      background: #ffffff;
-      color: rgb(0, 0, 0);
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      color: #000;
       text-align: center;
       min-height: 100vh;
-      padding: 120px 0 60px;
-      margin-top: 70px;
+      padding: 140px 0 80px;
       display: flex;
       align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translate(0, 0);
+      }
+
+      50% {
+        transform: translate(-20px, -20px);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
     }
 
     .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      letter-spacing: -1px;
+      animation: slideInUp 1s ease 0.2s both;
     }
 
-    .hero p {
-      font-size: 1rem;
-      margin-bottom: 2rem;
+    .hero .lead {
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 3rem;
+      color: #495057;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.3;
+      animation: slideInUp 1s ease 0.4s both;
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-buttons {
+      animation: slideInUp 1s ease 0.6s both;
     }
 
     .btn-custom {
       display: inline-block;
-      background: #000000;
+      background: #000;
       color: white;
-      padding: 12px 30px;
+      padding: 15px 35px;
       text-decoration: none;
-      border-radius: 25px;
-      font-weight: bold;
-      transition: background 0.3s ease;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      border: 2px solid #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-custom::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-custom:hover::before {
+      left: 100%;
     }
 
     .btn-custom:hover {
-      background: #2c3e50;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      color: white;
+    }
+
+    .btn-outline-custom {
+      background: transparent;
+      color: #000;
+      border: 2px solid #000;
+    }
+
+    .btn-outline-custom:hover {
+      background: #000;
       color: white;
     }
 
     /* Projects Section */
     .projects {
-      background: #fdfdfd;
-      padding: 60px 0;
-      border-top: 1px solid #000;
+      background: #ffffff;
+      padding: 100px 0;
+      position: relative;
     }
 
-    .projects h2 {
+    .section-title {
       text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      color: #2c3e50;
+      margin-bottom: 5rem;
+    }
+
+    .section-title h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: #000;
+      letter-spacing: -1px;
+    }
+
+    .section-title p {
+      font-size: 1.2rem;
+      color: #6c757d;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     .project-card {
       background: white;
-      border-radius: 10px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
       height: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent, rgba(0, 0, 0, 0.02));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
     }
 
     .project-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
     }
 
-    .project-card img {
+    .project-image {
       width: 100%;
       height: 200px;
+      background: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: #dee2e6;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.1);
     }
 
     .card-content {
       padding: 1.5rem;
+      position: relative;
     }
 
     .card-content h3 {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      color: #2c3e50;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #000;
+      letter-spacing: -0.5px;
     }
 
     .card-content p {
-      color: #666;
+      color: #6c757d;
       line-height: 1.6;
-    }
-
-    /* Footer */
-    footer {
-      background-color: #ffffff;
-      color: #000000;
-      padding: 20px 0;
-      border-top: 1px solid #000;
-    }
-
-    footer p {
       font-size: 0.9rem;
-      margin-bottom: 0;
+      margin-bottom: 1rem;
     }
 
-    footer a {
-      color: #505050;
-      text-decoration: none;
+    /* Skills badges */
+    .skills-badges {
+      margin-top: 0.75rem;
     }
 
-    footer a:hover {
-      color: #000000;
+    .skill-badge {
+      display: inline-block;
+      background: #f8f9fa;
+      color: #495057;
+      padding: 0.25rem 0.6rem;
+      border-radius: 15px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin: 0.15rem 0.15rem 0 0;
+      border: 1px solid #e9ecef;
     }
+
 
     /* Mobile Responsive */
+    @media (max-width: 1200px) {
+      .project-image {
+        height: 180px;
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .project-image {
+        height: 200px;
+        font-size: 2.5rem;
+      }
+    }
+
     @media (max-width: 768px) {
       .hero {
-        padding: 100px 0 40px;
-        margin-top: 60px;
+        padding: 120px 0 60px;
+        min-height: 90vh;
       }
 
       .hero h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
       }
 
-      .hero p {
-        font-size: 1rem;
+      .hero .lead {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
       }
 
-      .projects h2 {
-        font-size: 2rem;
+      .section-title h2 {
+        font-size: 2.2rem;
       }
 
       .projects {
-        padding: 40px 0;
+        padding: 60px 0;
+      }
+
+      .btn-custom {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+        margin: 0.3rem;
       }
 
       .navbar-nav {
@@ -237,29 +410,54 @@
       .navbar-nav .nav-link {
         margin: 0.5rem 0;
       }
+
+      .project-image {
+        height: 160px;
+        font-size: 2rem;
+      }
+
+      .card-content {
+        padding: 1.25rem;
+      }
+
     }
 
     @media (max-width: 576px) {
       .hero h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
 
-      .hero p {
-        font-size: 0.9rem;
+      .hero .lead {
+        font-size: 1rem;
         padding: 0 1rem;
       }
 
-      .projects h2 {
+      .section-title h2 {
         font-size: 1.8rem;
       }
 
-      footer {
-        padding: 15px 0;
+      .cv-popup-content {
+        padding: 2rem;
+        margin: 1rem;
       }
 
-      footer p {
-        font-size: 0.8rem;
+      .project-image {
+        height: 140px;
+        font-size: 1.8rem;
       }
+
+    }
+
+    /* Loading animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -267,26 +465,26 @@
 <body>
   <!-- Header -->
   <header>
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-        <a class="navbar-brand" href="#">Vedant Konde</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#projects">Projects</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://www.linkedin.com/in/vxdnt" target="_blank">LinkedIn</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://github.com/vxdnt" target="_blank">GitHub</a>
-            </li>
-          </ul>
-        </div>
+    <nav class="navbar navbar-expand-lg px-3">
+      <a class="navbar-brand" href="#">Vedant Konde</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#projects"><i class="bi bi-folder2-open me-1"></i>Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.linkedin.com/in/vxdnt" target="_blank"><i
+                class="bi bi-linkedin me-1"></i>LinkedIn</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/vxdnt" target="_blank"><i
+                class="bi bi-github me-1"></i>GitHub</a>
+          </li>
+        </ul>
       </div>
     </nav>
   </header>
@@ -294,22 +492,24 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <h1>Hello, I'm Vedant Konde</h1>
-          <p>
-            I'm Python developer I'm pursuing a degree in Computer Science and Engineering with a specialization in IoT,
-            Cybersecurity, and Blockchain Technology. Additionally, I'm enrolled in a BS program in Data Science from
-            IIT
-            Madras, focusing on Artificial Intelligence and Machine Learning. Beyond academics, I'm an entrepreneur and
-            the
-            founder of Sortmyentries, a marketplace for ticketing services. I enjoy taking initiative and leadership
-            roles,
-            and I have a strong passion for research, in-depth analysis, and strategic planning.
-          </p>
-          <a href="#projects" class="btn-custom">View My Work</a>
-          <a href="#" class="btn-custom" id="viewCVBtn">View CV</a>
-        </div>
+          <div class="hero-content">
+            <h1>Hello, I'm Vedant Konde</h1>
+            <p class="lead">
+              I'm Python developer, pursuing a degree in Computer Science and Engineering with a specialization in IoT,
+              Cybersecurity, and Blockchain Technology. Additionally, I'm enrolled in a BS program in Data Science from
+              IIT Madras, focusing on Artificial Intelligence and Machine Learning. Beyond academics, I'm an
+              entrepreneur and the founder of Sortmyentries, a marketplace for ticketing services. I enjoy taking
+              initiative and leadership roles, and I have a strong passion for research, in-depth analysis, and
+              strategic planning.
+            </p>
+            <div class="hero-buttons">
+              <a href="#projects" class="btn-custom">
+                <i class="bi bi-arrow-down me-2"></i>View My Work
+              </a>
+              <a href="#" class="btn-custom btn-outline-custom" id="viewCVBtn">
+                <i class="bi bi-file-text me-2"></i>View CV
+              </a>
+            </div>
       </div>
     </div>
   </section>
@@ -318,151 +518,206 @@
   <div id="cvPopup" class="cv-popup">
     <div class="cv-popup-content">
       <span class="cv-close" id="cvClose">&times;</span>
-      <h2 style="text-align: center;">May I know you?</h2>
+      <h2 style="text-align: center; margin-bottom: 2rem;"><i class="bi bi-person-plus me-2"></i>May I know you?</h2>
       <form action="https://formspree.io/f/xeokwlwl" method="POST">
         <div class="mb-3">
-          <label for="Name" class="form-label" required>Full Name:</label>
+          <label for="Name" class="form-label">Full Name</label>
           <input type="text" class="form-control" name="Name" required>
         </div>
         <div class="mb-3">
-          <label for="email" class="form-label" required>Email Address:</label>
+          <label for="email" class="form-label">Email Address</label>
           <input type="email" class="form-control" name="email" required>
         </div>
         <div class="mb-3">
-          <label for="Contact" class="form-label" required>Contact Number:</label>
-          <input type="number" class="form-control" name="Contact" required>
+          <label for="Contact" class="form-label">Contact Number</label>
+          <input type="tel" class="form-control" name="Contact" required>
         </div>
         <div class="mb-3">
-          <label for="reason" class="form-label" required>Purpose?</label>
-          <textarea class="form-control" name="reason" rows="3" required></textarea>
+          <label for="reason" class="form-label">Purpose</label>
+          <textarea class="form-control" name="reason" rows="3" required
+            placeholder="Please let me know why you'd like to view my CV..."></textarea>
         </div>
-        <button type="submit" class="btn btn-dark">Request CV</button>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-dark btn-lg">
+            <i class="bi bi-send me-2"></i>Request CV
+          </button>
+        </div>
       </form>
     </div>
   </div>
 
-
   <!-- Projects Section -->
   <section id="projects" class="projects">
     <div class="container">
-      <h2>My Projects</h2>
-      <div class="row g-4">
+      <div class="section-title">
+        <h2>My Projects</h2>
+      </div>
 
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <img src="parking.jpg" alt="Parking Slot Detection">
+      <div class="row g-4">
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="project-card fade-in">
+            <div class="project-image">
+              <i class="bi bi-car-front"></i>
+            </div>
             <div class="card-content">
               <h3>Parking Slot Detection</h3>
-              <p>Parking slot detection system using ultrasonic sensors to update incoming vehicles with available
-                slots.</p>
+              <p>Smart parking system using ultrasonic sensors to provide real-time updates on available parking slots.
+              </p>
+              <div class="skills-badges">
+                <span class="skill-badge">IoT</span>
+                <span class="skill-badge">Sensors</span>
+                <span class="skill-badge">Arduino</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <img src="drug.jpg" alt="Automatic Drug Dispenser">
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="project-card fade-in">
+            <div class="project-image">
+              <i class="bi bi-capsule"></i>
+            </div>
             <div class="card-content">
               <h3>Automatic Drug Dispenser</h3>
-              <p>IoT-enabled device designed to automate and schedule medication dispensing for patients.</p>
+              <p>IoT-enabled healthcare device designed to automate medication dispensing with smart reminders.</p>
+              <div class="skills-badges">
+                <span class="skill-badge">IoT</span>
+                <span class="skill-badge">Healthcare</span>
+                <span class="skill-badge">Automation</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <img src="Honeypot.png" alt="Deceptive Honeypots">
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="project-card fade-in">
+            <div class="project-image">
+              <i class="bi bi-shield-exclamation"></i>
+            </div>
             <div class="card-content">
               <h3>Deceptive Honeypots</h3>
-              <p>Cybersecurity project that deploys decoy systems to detect and analyze malicious activities.</p>
+              <p>Advanced cybersecurity project deploying sophisticated decoy systems to detect and analyze malicious
+                activities.</p>
+              <div class="skills-badges">
+                <span class="skill-badge">Cybersecurity</span>
+                <span class="skill-badge">Python</span>
+                <span class="skill-badge">Security</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <img src="blockchat.png" alt="Blockchain Chat App">
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="project-card fade-in">
+            <div class="project-image">
+              <i class="bi bi-chat-dots"></i>
+            </div>
             <div class="card-content">
               <h3>Blockchain Chat App</h3>
-              <p>Decentralized messaging application leveraging blockchain technology for secure communications.</p>
+              <p>Decentralized messaging application leveraging blockchain technology for secure, private
+                communications.</p>
+              <div class="skills-badges">
+                <span class="skill-badge">Blockchain</span>
+                <span class="skill-badge">Web3</span>
+                <span class="skill-badge">React</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <img src="devi.png" alt="Generative AI">
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="project-card fade-in">
+            <div class="project-image">
+              <i class="bi bi-robot"></i>
+            </div>
             <div class="card-content">
               <h3>Generative AI</h3>
-              <p>Generative AI model to simulate human-like responses and assist users interactively.</p>
+              <p>Advanced AI model designed to generate human-like responses and provide interactive assistance across
+                multiple domains.</p>
+              <div class="skills-badges">
+                <span class="skill-badge">AI/ML</span>
+                <span class="skill-badge">Python</span>
+                <span class="skill-badge">NLP</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <img src="vps.png" alt="Vehicle Parking System">
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="project-card fade-in">
+            <div class="project-image">
+              <i class="bi bi-geo-alt"></i>
+            </div>
             <div class="card-content">
-              <h3>Vehicle Parking Booking System</h3>
-              <p>Web-based platform that allows users to reserve parking spots in advance.</p>
+              <h3>Vehicle Parking Booking</h3>
+              <p>Comprehensive web-based platform enabling users to search, reserve, and manage parking spots with
+                payment integration.</p>
+              <div class="skills-badges">
+                <span class="skill-badge">Web Dev</span>
+                <span class="skill-badge">Database</span>
+                <span class="skill-badge">API</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <img src="bot.png" alt="Chat Bot">
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="project-card fade-in">
+            <div class="project-image">
+              <i class="bi bi-chat-square-text"></i>
+            </div>
             <div class="card-content">
-              <h3>Chat Bot</h3>
-              <p>Interactive chatbot developed to assist users by providing automated responses and information.</p>
+              <h3>Smart Chat Bot</h3>
+              <p>Intelligent conversational AI assistant developed to provide automated responses and customer support.
+              </p>
+              <div class="skills-badges">
+                <span class="skill-badge">Chatbot</span>
+                <span class="skill-badge">NLP</span>
+                <span class="skill-badge">Python</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <img src="calender.jpg" alt="Event Calendar">
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="project-card fade-in">
+            <div class="project-image">
+              <i class="bi bi-calendar-event"></i>
+            </div>
             <div class="card-content">
               <h3>Event Calendar</h3>
-              <p>Calendar which displays upcoming events across different 42 categories.</p>
+              <p>Dynamic calendar application displaying upcoming events across 42+ categories with filtering and search
+                features.</p>
+              <div class="skills-badges">
+                <span class="skill-badge">Web App</span>
+                <span class="skill-badge">JavaScript</span>
+                <span class="skill-badge">UI/UX</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <img src="sme.png" alt="Sortmyentries">
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="project-card fade-in">
+            <div class="project-image">
+              <i class="bi bi-ticket-perforated"></i>
+            </div>
             <div class="card-content">
               <h3>Sortmyentries</h3>
-              <p>AI powered event ticket marketplace for organizers and attendees, simplifying event ticketing.</p>
+              <p>AI-powered event ticketing marketplace connecting organizers and attendees, streamlining the entire
+                event management ecosystem.</p>
+              <div class="skills-badges">
+                <span class="skill-badge">Marketplace</span>
+                <span class="skill-badge">AI</span>
+                <span class="skill-badge">Full-stack</span>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-12 text-center text-md-start mb-2 mb-md-0">
-          <p>
-            Websites:
-            <a href="https://www.sortmyentries.in" target="_blank">sortmyentries.in</a> |
-            <a href="https://www.sortmyevents.in" target="_blank">sortmyevents.in</a>
-          </p>
-        </div>
-        <div class="col-md-6 col-12 text-center text-md-end">
-          <p>
-            <a href="mailto:vedantkonde09@gmail.com">vedantkonde09@gmail.com</a> |
-            <a href="tel:+917715039001">+91 77150 39001</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -472,28 +727,120 @@
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
       });
     });
 
-    // Show/Hide CV popup
+    // Show/Hide CV popup with improved animations
     document.getElementById("viewCVBtn").addEventListener("click", function (e) {
       e.preventDefault();
       document.getElementById("cvPopup").style.display = "flex";
+      document.body.style.overflow = 'hidden';
     });
 
     document.getElementById("cvClose").addEventListener("click", function () {
       document.getElementById("cvPopup").style.display = "none";
+      document.body.style.overflow = 'auto';
     });
 
     window.addEventListener("click", function (e) {
       if (e.target === document.getElementById("cvPopup")) {
         document.getElementById("cvPopup").style.display = "none";
+        document.body.style.overflow = 'auto';
       }
     });
 
+    // Enhanced scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all fade-in elements
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Header background on scroll
+    window.addEventListener('scroll', function () {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+      } else {
+        header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+      }
+    });
+
+    // Form submission feedback
+    document.querySelector('#cvPopup form').addEventListener('submit', function (e) {
+      const submitBtn = this.querySelector('button[type="submit"]');
+      submitBtn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Sending...';
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        submitBtn.innerHTML = '<i class="bi bi-send me-2"></i>Request CV';
+        submitBtn.disabled = false;
+      }, 3000);
+    });
+
+    // Navbar collapse on mobile when clicking links
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        if (navbarCollapse.classList.contains('show')) {
+          const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+          bsCollapse.hide();
+        }
+      });
+    });
+
+    // Add loading state for external links
+    document.querySelectorAll('a[target="_blank"]').forEach(link => {
+      link.addEventListener('click', function () {
+        const originalText = this.innerHTML;
+        this.innerHTML = '<i class="bi bi-arrow-up-right me-1"></i>' + this.textContent;
+
+        setTimeout(() => {
+          this.innerHTML = originalText;
+        }, 2000);
+      });
+    });
+
+    // Enhanced form validation
+    const form = document.querySelector('#cvPopup form');
+    const inputs = form.querySelectorAll('input, textarea');
+
+    inputs.forEach(input => {
+      input.addEventListener('blur', function () {
+        if (this.value.trim() === '') {
+          this.classList.add('is-invalid');
+        } else {
+          this.classList.remove('is-invalid');
+          this.classList.add('is-valid');
+        }
+      });
+
+      input.addEventListener('input', function () {
+        if (this.classList.contains('is-invalid') && this.value.trim() !== '') {
+          this.classList.remove('is-invalid');
+          this.classList.add('is-valid');
+        }
+      });
+    });
   </script>
 </body>
 
